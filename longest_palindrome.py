@@ -3,6 +3,9 @@
 '''
 import copy
 class Solution:
+    '''
+    暴力解 O(n^3)
+    '''
     def longestPalindrome(self, s: str) -> str:
         wordlist = list(s)
         length = len(wordlist)
@@ -32,9 +35,38 @@ class Solution:
             return wordlist[0]
         str2 = ''.join(longest_palindrome)
         return str2
-'''
-暴力解 O(n^3)
-'''
+
+    '''
+    动态规划 DYNAMIC PROGRAMMING
+    '''
+    def longestPalindrome1(self, s: str) -> str:
+        n = len(s)
+        if n < 2:
+            return s
+        longest_len = 1
+        begin = 0
+        dp = [[False] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = True
+        for L in range(2, n+1):
+            for i in range(n):
+                j = L + i - 1
+                if j >= n:
+                    break
+                if s[i] != s[j]:
+                    dp[i][j] = False
+                else:
+                    if j - i < 3:
+                        dp[i][j] = True
+                    else:
+                        dp[i][j] = dp[i+1][j-1]
+
+                if dp[i][j] and j - i + 1 > longest_len:
+                            longest_len = j - i + 1
+                            begin = i
+        return s[begin:begin + longest_len]
+
+
 sol = Solution()
-result = sol.longestPalindrome("babad")
+result = sol.longestPalindrome1("babad")
 print(result)
