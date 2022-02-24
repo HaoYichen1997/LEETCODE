@@ -45,9 +45,10 @@ def twosum3(nums:list[int], target: int) -> list[int]:
     hashtable = dict()
     for i, j in enumerate(nums):
         if target - j in hashtable:
-            return hashtable[target - j], i
+            return [hashtable[target - j], i]
         else:
             hashtable[nums[i]] = i
+
 
 '''
 python 中dict就是散列表（哈希表），查找哈希表中的元素耗时O（1）
