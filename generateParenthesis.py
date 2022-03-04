@@ -17,7 +17,7 @@ class Solution:
             for j in range(i):  # 开始遍历 p q ，其中p+q=i-1 , j 作为索引
                 now_list1 = total_l[j]  # p = j 时的括号组合情况
                 now_list2 = total_l[i - 1 - j]  # q = (i-1) - j 时的括号组合情况
-                for k1 in now_list1:
+                for k1 in now_list1: #这个二重循环 枚举出每种 个数为i 个括号的情况。
                     for k2 in now_list2:
                         if k1 == None:
                             k1 = ""
@@ -28,3 +28,6 @@ class Solution:
             total_l.append(l)  # l这个list就是i组括号的所有情况，添加到total_l中，继续求解i=i+1的情况
         return total_l[n]
 
+sol = Solution()
+result = sol.generateParenthesis(3)
+print(result)
