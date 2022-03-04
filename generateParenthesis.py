@@ -23,7 +23,7 @@ class Solution:
                             k1 = ""
                         if k2 == None:
                             k2 = ""
-                        el = "(" + k1 + ")" + k2
+                        el = "(" + k1 + ")" + k2  #组成多个el
                         l.append(el)  # 把所有可能的情况添加到 l 中
             total_l.append(l)  # l这个list就是i组括号的所有情况，添加到total_l中，继续求解i=i+1的情况
         return total_l[n]
